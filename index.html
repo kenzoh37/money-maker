@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MONEY MAKER</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0b1220;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 18px;
+}
+
+header {
+  text-align: center;
+  padding: 25px 10px;
+}
+
+header h1 {
+  color: #10d69a;
+  font-size: 30px;
+}
+
+header p {
+  color: #aaa;
+  margin-top: 8px;
+}
+
+.balance {
+  background: linear-gradient(135deg,#087f62,#10b981);
+  padding: 25px;
+  border-radius: 18px;
+  margin: 15px 0 25px;
+}
+
+.balance h2 {
+  font-size: 32px;
+  margin: 12px 0;
+}
+
+h3 {
+  margin: 20px 0 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.card {
+  background: #172338;
+  padding: 22px 12px;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid #263750;
+  margin-bottom: 12px;
+}
+
+.grid .card {
+  cursor: pointer;
+}
+
+.card span {
+  font-size: 30px;
+}
+
+.card h4 {
+  margin-top: 12px;
+}
+
+.card p {
+  color: #aaa;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+button {
+  background: #10b981;
+  color: #06140f;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  width: 100%;
+  font-weight: bold;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: 1px solid #34445b;
+  border-radius: 8px;
+  background: #172338;
+  color: white;
+}
+
+.section {
+  display: none;
+  margin-top: 25px;
+}
+
+.section.active {
+  display: block;
+}
+
+.back {
+  background: #263750;
+  color: white;
+}
+
+.share {
+  background: #25D366;
+  color: white;
+}
+
+footer {
+  text-align: center;
+  color: #777;
+  margin-top: 35px;
+  font-size: 12px;
+  padding-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>💰 MONEY MAKER</h1>
+  <p>Your business. Your opportunities. Your income.</p>
+</header>
+
+<div class="balance">
+  <p>MY EARNINGS</p>
+  <h2 id="balance">KSh 0</h2>
+  <p>Build your income one step at a time!</p>
+</div>
+
+<!-- HOME -->
+<div id="home" class="section active">
+  <h3>Choose your opportunity</h3>
+
+  <div class="grid">
+
+    <div class="card" onclick="show('jobs')">
+      <span>💼</span>
+      <h4>Online Jobs</h4>
+      <p>Find earning opportunities</p>
+    </div>
+
+    <div class="card" onclick="show('shop')">
+      <span>🛍️</span>
+      <h4>Online Shop</h4>
+      <p>Sell products</p>
+    </div>
+
+    <div class="card" onclick="show('market')">
+      <span>🤝</span>
+      <h4>Marketplace</h4>
+      <p>Connect with customers</p>
+    </div>
+
+    <div class="card" onclick="show('earnings')">
+      <span>💵</span>
+      <h4>My Earnings</h4>
+      <p>Track your money</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- JOBS -->
+<div id="jobs" class="section">
+  <h3>💼 Online Jobs</h3>
+
+  <div class="card">
+    <h4>Freelancing</h4>
+    <p>Offer writing, design and other skills.</p>
+  </div>
+
+  <div class="card">
+    <h4>Online Tutoring</h4>
+    <p>Teach people what you know.</p>
+  </div>
+
+  <div class="card">
+    <h4>Digital Services</h4>
+    <p>Help businesses with online tasks.</p>
+  </div>
+
+  <button class="back" onclick="show('home')">Back Home</button>
+</div>
+
+<!-- SHOP -->
+<div id="shop" class="section">
+  <h3>🛍️ My Online Shop</h3>
+
+  <p>Add products you want to sell.</p>
+
+  <input id="product" placeholder="Product name">
+
+  <input id="price" type="number"
+  placeholder="Price in KSh">
+
+  <button onclick="addProduct()">Add Product</button>
+
+  <div id="products"></div>
+
+  <button class="back" onclick="show('home')">Back Home</button>
+</div>
+
+<!-- MARKETPLACE -->
+<div id="market" class="section">
+  <h3>🤝 Marketplace</h3>
+
+  <p>Advertise services you offer.</p>
+
+  <input id="service"
+  placeholder="What service do you offer?">
+
+  <input id="servicePrice"
+  type="number"
+  placeholder="Price in KSh">
+
+  <button onclick="addService()">Post Service</button>
+
+  <div id="services"></div>
+
+  <button class="back" onclick="show('home')">Back Home</button>
+</div>
+
+<!-- EARNINGS -->
+<div id="earnings" class="section">
+  <h3>💵 My Earnings</h3>
+
+  <p>Your recorded earnings:</p>
+
+  <h2 id="total">KSh 0</h2>
+
+  <input id="income"
+  type="number"
+  placeholder="Enter money earned">
+
+  <button onclick="addIncome()">Record Earnings</button>
+
+  <button class="back" onclick="show('home')">Back Home</button>
+</div>
+
+<footer>
+  MONEY MAKER © 2026
+  <p>Build your income one step at a time.</p>
+</footer>
+
+<!-- ALL JAVASCRIPT IS INSIDE THESE SCRIPT TAGS -->
+<script>
+
+let earnings =
+Number(localStorage.getItem("mm_earnings")) || 0;
+
+let products =
+JSON.parse(localStorage.getItem("mm_products") || "[]");
+
+let services =
+JSON.parse(localStorage.getItem("mm_services") || "[]");
+
+// SAVE DATA
+function saveData() {
+  localStorage.setItem("mm_earnings", earnings);
+  localStorage.setItem("mm_products",
+    JSON.stringify(products));
+  localStorage.setItem("mm_services",
+    JSON.stringify(services));
+}
+
+// NAVIGATION
+function show(section) {
+  document.querySelectorAll(".section")
+  .forEach(s => s.classList.remove("active"));
+
+  document.getElementById(section)
+  .classList.add("active");
+}
+
+// UPDATE EARNINGS
+function updateBalance() {
+  document.getElementById("balance").innerText =
+  "KSh " + earnings.toLocaleString();
+
+  document.getElementById("total").innerText =
+  "KSh " + earnings.toLocaleString();
+}
+
+// RECORD EARNINGS
+function addIncome() {
+  let amount = Number(
+    document.getElementById("income").value
+  );
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    alert("Enter a valid amount.");
+    return;
+  }
+
+  earnings += amount;
+
+  saveData();
+  updateBalance();
+
+  document.getElementById("income").value = "";
+
+  alert("Earnings saved successfully!");
+}
+
+// DISPLAY PRODUCTS
+function renderProducts() {
+  let container = document.getElementById("products");
+
+  container.replaceChildren();
+
+  products.forEach((product, index) => {
+
+    let item = document.createElement("div");
+    item.className = "card";
+
+    let title = document.createElement("h4");
+    title.textContent = product.name;
+
+    let price = document.createElement("p");
+    price.textContent =
+    "KSh " + product.price.toLocaleString();
+
+    let share = document.createElement("button");
+    share.className = "share";
+    share.textContent = "Share on WhatsApp";
+
+    share.onclick = function() {
+      let message =
+      "Hello! I am selling " + product.name +
+      " for KSh " + product.price +
+      ". Are you interested?";
+
+      window.open(
+        "https://wa.me/?text=" +
+        encodeURIComponent(message),
+        "_blank"
+      );
+    };
+
+    let remove = document.createElement("button");
+    remove.textContent = "Delete Product";
+    remove.style.background = "#9f3434";
+    remove.style.color = "white";
+
+    remove.onclick = function() {
+      if (confirm("Delete this product?")) {
+        products.splice(index, 1);
+        saveData();
+        renderProducts();
+      }
+    };
+
+    item.append(title, price, share, remove);
+    container.appendChild(item);
+  });
+}
+
+// ADD PRODUCTS
+function addProduct() {
+  let name =
+  document.getElementById("product").value.trim();
+
+  let price =
+  Number(document.getElementById("price").value);
+
+  if (!name || !Number.isFinite(price) || price <= 0) {
+    alert("Enter a product name and valid price.");
+    return;
+  }
+
+  products.push({name, price});
+
+  saveData();
+  renderProducts();
+
+  document.getElementById("product").value = "";
+  document.getElementById("price").value = "";
+
+  alert("Product saved!");
+}
+
+// DISPLAY SERVICES
+function renderServices() {
+  let container = document.getElementById("services");
+
+  container.replaceChildren();
+
+  services.forEach((service, index) => {
+
+    let item = document.createElement("div");
+    item.className = "card";
+
+    let title = document.createElement("h4");
+    title.textContent = service.name;
+
+    let price = document.createElement("p");
+    price.textContent = "Price: KSh " + service.price;
+
+    let share = document.createElement("button");
+    share.className = "share";
+    share.textContent = "Share on WhatsApp";
+
+    share.onclick = function() {
+      let message =
+      "Hello! I offer " + service.name +
+      " for KSh " + service.price +
+      ". Contact me if interested.";
+
+      window.open(
+        "https://wa.me/?text=" +
+        encodeURIComponent(message),
+        "_blank"
+      );
+    };
+
+    let remove = document.createElement("button");
+    remove.textContent = "Delete Service";
+    remove.style.background = "#9f3434";
+    remove.style.color = "white";
+
+    remove.onclick = function() {
+      if (confirm("Delete this service?")) {
+        services.splice(index, 1);
+        saveData();
+        renderServices();
+      }
+    };
+
+    item.append(title, price, share, remove);
+    container.appendChild(item);
+  });
+}
+
+// ADD SERVICES
+function addService() {
+  let name =
+  document.getElementById("service").value.trim();
+
+  let price =
+  document.getElementById("servicePrice").value.trim();
+
+  if (!name || !price) {
+    alert("Enter your service and price.");
+    return;
+  }
+
+  services.push({name, price});
+
+  saveData();
+  renderServices();
+
+  document.getElementById("service").value = "";
+  document.getElementById("servicePrice").value = "";
+
+  alert("Service saved!");
+}
+
+// LOAD SAVED DATA
+updateBalance();
+renderProducts();
+renderServices();
+
+</script>
+
+</body>
+</html>
